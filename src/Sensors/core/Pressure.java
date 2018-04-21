@@ -9,12 +9,12 @@ import Sensors.Interfaces.IPressure;
 import Sensors.Interfaces.Sensor;
 
 
-public class Pressure<T extends String> implements IPressure<T>{
+public class Pressure<T extends String> implements IPressure<String>{
     
     private double value;
-    private T unit;
+    private String unit;
     
-    public Pressure(double value, T unit) {
+    public Pressure(double value, String unit) {
         setValue(value);
         setUnit(unit);
     }
@@ -23,7 +23,7 @@ public class Pressure<T extends String> implements IPressure<T>{
     }
 
     @Override
-    public void setUnit(T unit) {
+    public void setUnit(String unit) {
         if (unit.equalsIgnoreCase("mb")) {
             this.unit = unit;
         } else {
@@ -42,7 +42,7 @@ public class Pressure<T extends String> implements IPressure<T>{
     }
 
     @Override
-    public T getUnit() {
+    public String getUnit() {
         return unit;
     }
     

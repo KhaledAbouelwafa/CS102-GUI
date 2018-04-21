@@ -9,12 +9,12 @@ import Sensors.Interfaces.IHumidity;
 import Sensors.Interfaces.Sensor;
 
 
-public class Humidity<T extends Character> implements IHumidity<T>{
+public class Humidity<T extends Character> implements IHumidity<Character>{
     
     private double value;
-    private T unit;
+    private Character unit;
     
-    public Humidity(double value, T unit) {
+    public Humidity(double value, Character unit) {
         setValue(value);
         setUnit(unit);
     }
@@ -23,7 +23,7 @@ public class Humidity<T extends Character> implements IHumidity<T>{
     }
     
     @Override
-    public void setUnit(T unit) {
+    public void setUnit(Character unit) {
         if (unit.equals('p')||unit.equals('P')) {
             this.unit = unit;
         } else {
@@ -42,7 +42,7 @@ public class Humidity<T extends Character> implements IHumidity<T>{
     }
 
     @Override
-    public T getUnit() {
+    public Character getUnit(){
         return unit;
     }
     

@@ -275,13 +275,14 @@ public class WeatherApp extends javax.swing.JFrame {
                     String[] date2info = date2.getText().split("/");
                     date12 = new Date(Integer.parseInt(date1info[0]), Integer.parseInt(date1info[1]), Integer.parseInt(date1info[2]));
                     date22 = new Date(Integer.parseInt(date2info[0]), Integer.parseInt(date2info[1]), Integer.parseInt(date2info[2]));
+                    
                     if (date12.compareTo(date22) == 0) {
-                        output.setText("Date or City are not correct");
+                        output.setText("enter dates exclusively");
                         break;
 
                     }
                     Map<City, Sensor> maxTempMap = data.hottestTemperature(date12, date22);
-                    String out = "HOTTEST TEMPERATURE DURING " + date12 + " AND " + date22 + "\n";
+                    String out = "HOTTEST TEMPERATURE BETWEEN " + date12 + " AND " + date22 + "\n";
                     for (City c : maxTempMap.keySet()) {
                         out += String.format("%-10s->\t%.2f\n", c.getName(), maxTempMap.get(c).getValue());
                     }
@@ -295,7 +296,7 @@ public class WeatherApp extends javax.swing.JFrame {
                     date12 = new Date(Integer.parseInt(date1info[0]), Integer.parseInt(date1info[1]), Integer.parseInt(date1info[2]));
                     date22 = new Date(Integer.parseInt(date2info[0]), Integer.parseInt(date2info[1]), Integer.parseInt(date2info[2]));
                     if (date12.compareTo(date22) == 0) {
-                        output.setText("Date or city are not correct");
+                        output.setText("enter dates exclusively");
                         break;
                     }
                     City city2 = cf.getCity(city.getText());
@@ -303,7 +304,7 @@ public class WeatherApp extends javax.swing.JFrame {
                     ITempreture tempValue = m.getTemperatureSensor();
                     IHumidity humValue = m.getHumiditySensor();
                     IPressure preValue = m.getPressureSensor();
-                    String out = "AVERAGE VALUES OF CITY " + city2.getName().toUpperCase() + " DURING " + date12 + " AND " + date22 + "\n";
+                    String out = "AVERAGE VALUES OF CITY " + city2.getName().toUpperCase() + " BETWEEN " + date12 + " AND " + date22 + "\n";
                     out += String.format("%s -> %s -> %s -> %s\n", city2.getName(), tempValue, humValue, preValue);
                     output.setText(out);
                     break;
@@ -314,7 +315,7 @@ public class WeatherApp extends javax.swing.JFrame {
                     date12 = new Date(Integer.parseInt(date1info[0]), Integer.parseInt(date1info[1]), Integer.parseInt(date1info[2]));
                     date22 = new Date(Integer.parseInt(date2info[0]), Integer.parseInt(date2info[1]), Integer.parseInt(date2info[2]));
                     if (date12.compareTo(date22) == 0) {
-                        output.setText("Date or City are not correct");
+                        output.setText("enter dates exclusively");
                         break;
                     }
                     Set<City> cities = data.citiesByTemperature(date12, date22);
@@ -333,7 +334,7 @@ public class WeatherApp extends javax.swing.JFrame {
                     date12 = new Date(Integer.parseInt(date1info[0]), Integer.parseInt(date1info[1]), Integer.parseInt(date1info[2]));
                     date22 = new Date(Integer.parseInt(date2info[0]), Integer.parseInt(date2info[1]), Integer.parseInt(date2info[2]));
                     if (date12.compareTo(date22) == 0) {
-                        output.setText("Date or City are not correct");
+                        output.setText("enter dates exclusively");
                         break;
                     }
                     City city2 = cf.getCity(city.getText());

@@ -9,12 +9,12 @@ import Sensors.Interfaces.IDistance;
 import Sensors.Interfaces.Sensor;
 
 
-public class Distance<T extends Character> implements IDistance<T>{
+public class Distance<T extends Character> implements IDistance<Character>{
     
     private double value;
-    private T unit;
+    private Character unit;
     
-    public Distance(double value, T unit) {
+    public Distance(double value, Character unit) {
         setValue(value);
         setUnit(unit);
     }
@@ -23,7 +23,7 @@ public class Distance<T extends Character> implements IDistance<T>{
     }
     
     @Override
-    public void setUnit(T unit) {
+    public void setUnit(Character unit) {
         if (unit.equals('m')||unit.equals('M')) {
             this.unit=unit;
         } else {
@@ -42,7 +42,7 @@ public class Distance<T extends Character> implements IDistance<T>{
     }
 
     @Override
-    public T getUnit() {
+    public Character getUnit() {
         return unit;
     }
     

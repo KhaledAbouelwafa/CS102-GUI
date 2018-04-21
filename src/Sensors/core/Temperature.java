@@ -9,12 +9,12 @@ import Sensors.Interfaces.ITempreture;
 import Sensors.Interfaces.Sensor;
 
 
-public class Temperature<T extends Character> implements ITempreture<T> {
+public class Temperature<T extends Character> implements ITempreture<Character> {
 
     private double value;
-    private T unit;
+    private Character unit;
     
-    public Temperature(double value, T unit) {
+    public Temperature(double value, Character unit) {
         setValue(value);
         setUnit(unit);
     }
@@ -23,7 +23,7 @@ public class Temperature<T extends Character> implements ITempreture<T> {
     }
     
     @Override
-    public void setUnit(T unit) {
+    public void setUnit(Character unit) {
         if (unit.equals('c') || unit.equals('k') || unit.equals('C') || unit.equals('K')) {
             this.unit = unit;
         } else {
@@ -42,7 +42,7 @@ public class Temperature<T extends Character> implements ITempreture<T> {
     }
 
     @Override
-    public T getUnit() {
+    public Character getUnit() {
         return unit;
     }
     
