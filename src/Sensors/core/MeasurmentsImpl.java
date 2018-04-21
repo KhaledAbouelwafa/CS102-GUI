@@ -71,9 +71,9 @@ public class MeasurmentsImpl implements Measurments {
 
     @Override
     public int compareTo(Measurments t) {
-        if (this.sensors.get("Temperature").getValue() > t.getSensors().get("Temperature").getValue()) {
+        if (this.getTemperatureSensor().getValue() > t.getTemperatureSensor().getValue()) {
             return 1;
-        } else if (this.sensors.get("Temperature").getValue() < t.getSensors().get("Temperature").getValue()) {
+        } else if (this.getTemperatureSensor().getValue()< t.getTemperatureSensor().getValue()) {
             return -1;
         } else {
             return 0;

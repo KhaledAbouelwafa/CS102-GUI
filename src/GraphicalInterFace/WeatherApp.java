@@ -35,7 +35,9 @@ public class WeatherApp extends javax.swing.JFrame {
     Date date12, date22;
     CityFactory cf;
     DataAnalyticsImpl data;
-
+    ArrayList<City> citiesArray = new ArrayList<>();
+    ArrayList<String> citiesArrayNames= new ArrayList<>();
+    Date minDate, maxDate;
     /**
      * Creates new form WeatherApp
      */
@@ -68,7 +70,7 @@ public class WeatherApp extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         output = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Weather Sensor App");
@@ -89,12 +91,12 @@ public class WeatherApp extends javax.swing.JFrame {
                 StartActionPerformed(evt);
             }
         });
-        jPanel1.add(Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 430, 130, 40));
+        jPanel1.add(Start, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 460, 130, 40));
 
         jLabel6.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("City:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 380, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 410, -1, -1));
 
         city.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         city.setForeground(new java.awt.Color(0, 102, 102));
@@ -104,12 +106,12 @@ public class WeatherApp extends javax.swing.JFrame {
                 cityActionPerformed(evt);
             }
         });
-        jPanel1.add(city, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 120, 40));
+        jPanel1.add(city, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 410, 120, 40));
 
         jLabel3.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Date2:");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, -1, -1));
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, -1, -1));
 
         date2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         date2.setForeground(new java.awt.Color(0, 102, 102));
@@ -119,7 +121,7 @@ public class WeatherApp extends javax.swing.JFrame {
                 date2ActionPerformed(evt);
             }
         });
-        jPanel1.add(date2, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 120, 40));
+        jPanel1.add(date2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, 120, 40));
 
         date1.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         date1.setForeground(new java.awt.Color(0, 102, 102));
@@ -129,13 +131,13 @@ public class WeatherApp extends javax.swing.JFrame {
                 date1ActionPerformed(evt);
             }
         });
-        jPanel1.add(date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 120, 40));
+        jPanel1.add(date1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 310, 120, 40));
 
         jLabel5.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Date1:");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, -1, -1));
-        jPanel1.add(fileDirectory, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 268, 30));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 320, -1, -1));
+        jPanel1.add(fileDirectory, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 180, 268, 30));
 
         methods.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
         methods.setForeground(new java.awt.Color(0, 102, 102));
@@ -145,17 +147,17 @@ public class WeatherApp extends javax.swing.JFrame {
                 methodsActionPerformed(evt);
             }
         });
-        jPanel1.add(methods, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
+        jPanel1.add(methods, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Choose Operation:");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 200, -1, -1));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("File:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 120, -1, -1));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, -1, -1));
 
         fileChooseButton.setBackground(new java.awt.Color(255, 255, 255));
         fileChooseButton.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
@@ -166,15 +168,15 @@ public class WeatherApp extends javax.swing.JFrame {
                 fileChooseButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(fileChooseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 150, 70, 30));
+        jPanel1.add(fileChooseButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 70, 30));
 
         jLabel7.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Weather App ");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 40, -1, -1));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 70, -1, -1));
 
         output.setColumns(20);
-        output.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 24)); // NOI18N
+        output.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
         output.setRows(5);
         output.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         output.addHierarchyListener(new java.awt.event.HierarchyListener() {
@@ -184,24 +186,20 @@ public class WeatherApp extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(output);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 70, 740, 520));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(1090, 0, 266, 264));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, 560, 470));
+
+        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\khaled helal\\Desktop\\172\\CS102-project-GUI\\Project2\\src\\Cloud-icon.png")); // NOI18N
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(1070, 70, 290, 270));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1468, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
         );
 
         pack();
@@ -219,6 +217,12 @@ public class WeatherApp extends javax.swing.JFrame {
             fileName = f.getAbsolutePath();
             fileDirectory.setText(fileName);
             data = DataAnalyticsImpl.getInstance(fileName);
+            citiesArray = data.getCities();
+            for(City c: citiesArray){
+                citiesArrayNames.add(c.getName().toUpperCase());
+            }
+            minDate = data.minDate();
+            maxDate = data.maxDate();
         } catch (Exception ex) {
             String out = "Please Make Sure the file selected follows the form:\n"
                     + "{cityName;latitude;longitude;temperature;temperatureUnit;\n"
@@ -279,7 +283,16 @@ public class WeatherApp extends javax.swing.JFrame {
                     if (date12.compareTo(date22) == 0) {
                         output.setText("enter dates exclusively");
                         break;
-
+                    }
+                    if(date12.compareTo(minDate)<0 && date22.compareTo(minDate)<0)
+                    {
+                        output.setText("Both Dates are not in the file");
+                        break;
+                    }
+                    if(date12.compareTo(maxDate)>0 && date22.compareTo(maxDate)>0)
+                    {
+                        output.setText("Both Dates are not in the file");
+                        break;
                     }
                     Map<City, Sensor> maxTempMap = data.hottestTemperature(date12, date22);
                     String out = "HOTTEST TEMPERATURE BETWEEN " + date12 + " AND " + date22 + "\n";
@@ -297,6 +310,20 @@ public class WeatherApp extends javax.swing.JFrame {
                     date22 = new Date(Integer.parseInt(date2info[0]), Integer.parseInt(date2info[1]), Integer.parseInt(date2info[2]));
                     if (date12.compareTo(date22) == 0) {
                         output.setText("enter dates exclusively");
+                        break;
+                    }
+                    if(date12.compareTo(minDate)<0 && date22.compareTo(minDate)<0)
+                    {
+                        output.setText("Both Dates are not in the file");
+                        break;
+                    }
+                    if(date12.compareTo(maxDate)>0 && date22.compareTo(maxDate)>0)
+                    {
+                        output.setText("Both Dates are not in the file");
+                        break;
+                    }
+                    if(!citiesArrayNames.contains(city.getText().toUpperCase())){
+                        output.setText("City is not in the file");
                         break;
                     }
                     City city2 = cf.getCity(city.getText());
@@ -318,6 +345,16 @@ public class WeatherApp extends javax.swing.JFrame {
                         output.setText("enter dates exclusively");
                         break;
                     }
+                    if(date12.compareTo(minDate)<0 && date22.compareTo(minDate)<0)
+                    {
+                        output.setText("Both Dates are not in the file");
+                        break;
+                    }
+                    if(date12.compareTo(maxDate)>0 && date22.compareTo(maxDate)>0)
+                    {
+                        output.setText("Both Dates are not in the file");
+                        break;
+                    }
                     Set<City> cities = data.citiesByTemperature(date12, date22);
                     Iterator<City> cIt = cities.iterator();
                     String out = "SET OF CITIES ORGANIZED BY THEIR INCREASING ORDER OF AVG TEMPERATURE\n";
@@ -335,6 +372,20 @@ public class WeatherApp extends javax.swing.JFrame {
                     date22 = new Date(Integer.parseInt(date2info[0]), Integer.parseInt(date2info[1]), Integer.parseInt(date2info[2]));
                     if (date12.compareTo(date22) == 0) {
                         output.setText("enter dates exclusively");
+                        break;
+                    }
+                    if(date12.compareTo(minDate)<0 && date22.compareTo(minDate)<0)
+                    {
+                        output.setText("Both Dates are not in the file");
+                        break;
+                    }
+                    if(date12.compareTo(maxDate)>0 && date22.compareTo(maxDate)>0)
+                    {
+                        output.setText("Both Dates are not in the file");
+                        break;
+                    }
+                    if(!citiesArrayNames.contains(city.getText().toUpperCase())){
+                        output.setText("City is not in the file");
                         break;
                     }
                     City city2 = cf.getCity(city.getText());
@@ -418,13 +469,13 @@ public class WeatherApp extends javax.swing.JFrame {
     private javax.swing.JTextField date2;
     private javax.swing.JButton fileChooseButton;
     private javax.swing.JTextField fileDirectory;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JComboBox<String> methods;

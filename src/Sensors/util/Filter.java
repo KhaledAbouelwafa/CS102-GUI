@@ -70,6 +70,18 @@ public class Filter {
         cities = new ArrayList(CitySet);
         return cities;
     }
+    
+    public ArrayList<Date> dates() {    
+        ArrayList<Date> dates;
+        Set<Date> datesSet = new TreeSet<>();
+
+        for (int i = 0; i < measurements.size(); i++) {
+            datesSet.add(measurements.get(i).getDate());
+        }
+
+        dates = new ArrayList(datesSet);
+        return dates;
+    }
 
     //return given city between two dates
     public ArrayList<Measurments> CityMeasurmentses(String cityName, Date d1, Date d2) {

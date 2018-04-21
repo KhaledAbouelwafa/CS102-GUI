@@ -31,11 +31,13 @@ public class DataAnalyticsImpl implements DataAnalytics {
 
     private static DataAnalyticsImpl instance;
     ArrayList<City> cities;
+    ArrayList<Date> dates;
 
     private DataAnalyticsImpl(String fileName) throws IOException {
         filter = new Filter();
         filter.readFromFile(fileName);
         cities = filter.cities();
+        dates = filter.dates();
     }
 
     public static DataAnalyticsImpl getInstance(String fileName) throws IOException {
@@ -43,6 +45,18 @@ public class DataAnalyticsImpl implements DataAnalytics {
         return instance;
     }
 
+    public ArrayList<City> getCities(){
+        return cities;
+    }
+    
+    public Date minDate(){
+        return Collections.min(dates);
+    }
+    
+    public Date maxDate(){
+        return Collections.max(dates);
+    }
+    
     @Override
     public Map<City, Sensor> hottestTemperature(Date d1, Date d2) {
 
@@ -83,11 +97,11 @@ public class DataAnalyticsImpl implements DataAnalytics {
         m.setCity(city);
         ITempreture temp = new Temperature();
         temp.setValue(avgTemp);
-        temp.setUnit("C");
+        temp.setUnit('c');
         m.getSensors().put("Temperature", temp);
         IHumidity hum = new Humidity();
         hum.setValue(avgHum);
-        hum.setUnit("P");
+        hum.setUnit('P');
         m.getSensors().put("Humidity", hum);
         IPressure pre = new Pressure();
         pre.setValue(avgPre);
